@@ -172,7 +172,7 @@ void ofxQuadWarper::draw(int x_in,int y_in,float destW_in,float destH_in){
 
 	destW = destW_in;
 	destH = destH_in;
-
+	ofSetLineWidth(1);
 	x = x_in;
 	y = y_in;
 	glPushMatrix();
@@ -181,19 +181,19 @@ void ofxQuadWarper::draw(int x_in,int y_in,float destW_in,float destH_in){
 	ofNoFill();
 	ofSetLineWidth(1);
 	ofRect(0,0,destW,destH);
-	ofSetColor(0xFFFFFF);
+	ofSetHexColor(0xFFFFFF);
 	ofDrawBitmapString(file,0,-20);
 	ofBeginShape();
 	for(int i=0;i<4;i++){
 		ofNoFill();
-		ofSetColor(0xFFFFFF);
+		ofSetHexColor(0xFFFFFF);
 		ofVertex(pts[i].loc.x/w*destW,pts[i].loc.y/h*destH);
 
 		pts[i].draw(w/destW,h/destH);
 		if(isActive){
-			ofSetColor(0x00FFFF);
+			ofSetHexColor(0x00FFFF);
 		} else {
-			ofSetColor(0x0000FF);
+			ofSetHexColor(0x0000FF);
 		}
 		ofFill();
 		ofRect(origPts[i].x/w*destW-2,origPts[i].y/h*destH-2,4,4);
