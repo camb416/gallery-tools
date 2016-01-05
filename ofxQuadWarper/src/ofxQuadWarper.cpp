@@ -78,7 +78,7 @@ void ofxQuadWarper::setup(string file_in, int w_in,int h_in, bool snap_in, bool 
 }
 
 bool ofxQuadWarper::isSetup(){
-	if(w!=NULL){
+	if(w != NULL){
 		return true;
 	} else {
 		return false;
@@ -180,7 +180,7 @@ void ofxQuadWarper::draw(int x_in,int y_in,float destW_in,float destH_in){
 	ofSetColor(c);
 	ofNoFill();
 	ofSetLineWidth(1);
-	ofRect(0,0,destW,destH);
+	ofRectangle(0,0,destW,destH);
 	ofSetHexColor(0xFFFFFF);
 	ofDrawBitmapString(file,0,-20);
 	ofBeginShape();
@@ -196,7 +196,7 @@ void ofxQuadWarper::draw(int x_in,int y_in,float destW_in,float destH_in){
 			ofSetHexColor(0x0000FF);
 		}
 		ofFill();
-		ofRect(origPts[i].x/w*destW-2,origPts[i].y/h*destH-2,4,4);
+		ofRectangle(origPts[i].x/w*destW-2,origPts[i].y/h*destH-2,4,4);
 
 		ofNoFill();
 		ofLine(origPts[i].x/w*destW,origPts[i].y/h*destH,pts[i].loc.x/w*destW,pts[i].loc.y/h*destH);
