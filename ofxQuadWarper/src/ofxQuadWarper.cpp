@@ -180,7 +180,7 @@ void ofxQuadWarper::draw(int x_in,int y_in,float destW_in,float destH_in){
 	ofSetColor(c);
 	ofNoFill();
 	ofSetLineWidth(1);
-	ofRectangle(0,0,destW,destH);
+	ofDrawRectangle(0,0,destW,destH);
 	ofSetHexColor(0xFFFFFF);
 	ofDrawBitmapString(file,0,-20);
 	ofBeginShape();
@@ -196,23 +196,23 @@ void ofxQuadWarper::draw(int x_in,int y_in,float destW_in,float destH_in){
 			ofSetHexColor(0x0000FF);
 		}
 		ofFill();
-		ofRectangle(origPts[i].x/w*destW-2,origPts[i].y/h*destH-2,4,4);
+		ofDrawRectangle(origPts[i].x/w*destW-2,origPts[i].y/h*destH-2,4,4);
 
 		ofNoFill();
-		ofLine(origPts[i].x/w*destW,origPts[i].y/h*destH,pts[i].loc.x/w*destW,pts[i].loc.y/h*destH);
+		ofDrawLine(origPts[i].x/w*destW,origPts[i].y/h*destH,pts[i].loc.x/w*destW,pts[i].loc.y/h*destH);
 	}
 	ofEndShape(true);
 
 	if(selectedPoint!=NULL){
-		ofCircle(selectedPoint->loc.x/w*destW,selectedPoint->loc.y/h*destH,15);
+		ofDrawCircle(selectedPoint->loc.x/w*destW,selectedPoint->loc.y/h*destH,15);
 		string msg = ofToString(selectedPoint->loc.x) + ","+ofToString(selectedPoint->loc.y);
 		ofDrawBitmapString(msg,selectedPoint->loc.x/w*destW+15,selectedPoint->loc.y/h*destH-10);
 	}
 
 	ofSetColor(255,0,0);
 	ofNoFill();
-	ofLine(mx-5,my-5,mx+5,my+5);
-	ofLine(mx+5,my-5,mx-5,my+5);
+	ofDrawLine(mx-5,my-5,mx+5,my+5);
+	ofDrawLine(mx+5,my-5,mx-5,my+5);
 
 	glPopMatrix();
 
