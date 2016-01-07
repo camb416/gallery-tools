@@ -177,7 +177,7 @@ void ofxQuadWarper::draw(int x_in,int y_in,float destW_in,float destH_in){
 	y = y_in;
 	glPushMatrix();
 	glTranslatef(x_in,y_in,0);
-	ofSetColor(c);
+	ofSetHexColor(c);
 	ofNoFill();
 	ofSetLineWidth(1);
 	ofDrawRectangle(0,0,destW,destH);

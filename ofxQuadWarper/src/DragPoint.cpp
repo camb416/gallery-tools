@@ -34,6 +34,6 @@ void DragPoint::update(){
 }
 
 void DragPoint::draw(float xs_in,float ys_in){
-	ofSetColor(c);
+	ofSetHexColor(c);
     ofDrawRectangle(loc.x/xs_in-2,loc.y/ys_in-2,4,4);
 }
