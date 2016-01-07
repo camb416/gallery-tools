@@ -13,12 +13,14 @@ ofxQuadWarper::ofxQuadWarper(){
 	file = "dummy.xml";
 	c = 0x000000;
 }
+
 void ofxQuadWarper::reset(){
 	pts[0].loc.set(0,0);
 	pts[1].loc.set(w,0);
 	pts[2].loc.set(w,h);
 	pts[3].loc.set(0,h);
 }
+
 void ofxQuadWarper::saveSettings(){
 	settings.pushTag("quad");
 	for(int i=0;i<4;i++){
@@ -27,11 +29,15 @@ void ofxQuadWarper::saveSettings(){
 	}
 	settings.saveFile(file);
 	settings.popTag();
-
 }
+
 void ofxQuadWarper::loadSettings(){
 	cout << "TRYING TO LOAD THIS FILE: " << file << endl;
-	settings.loadFile(file);
+    if(!settings.loadFile(file)){
+        // file doesn't exist or failed to load. Creating new file
+        ofLogError() << "loading " << file << " failed.";
+    }
+    
 	string str;
 
 	settings.pushTag("quad",0);
@@ -139,7 +145,7 @@ void ofxQuadWarper::update(int x_in,int y_in){
 					break;
 				}
 			}
-			cout << "SNAPSNAPSNAP" << nearID << endl;
+            
 			switch(nearID){
 			case 0:
 				pts[1].loc.y = selectedPoint->loc.y;
@@ -209,10 +215,12 @@ void ofxQuadWarper::draw(int x_in,int y_in,float destW_in,float destH_in){
 		ofDrawBitmapString(msg,selectedPoint->loc.x/w*destW+15,selectedPoint->loc.y/h*destH-10);
 	}
 
-	ofSetColor(255,0,0);
-	ofNoFill();
-	ofDrawLine(mx-5,my-5,mx+5,my+5);
-	ofDrawLine(mx+5,my-5,mx-5,my+5);
+    // draw an X over the cursor
+    // broken using ofxGui
+	// ofSetColor(255,0,0);
+	// ofNoFill();
+	// ofDrawLine(mx-5,my-5,mx+5,my+5);
+	// ofDrawLine(mx+5,my-5,mx-5,my+5);
 
 	glPopMatrix();
 
@@ -229,7 +237,7 @@ void ofxQuadWarper::mousedown(){
 	} else {
 		// cout << "SELECTED POINT is NULL";
 	}
-	cout << endl;
+
 }
 void ofxQuadWarper::mouseup(){
 	isActive = true;
