@@ -102,5 +102,5 @@ void ofxCurve::setEnd(ofPoint end_in){
 
 // draw (no style info)
 void ofxCurve::draw(){
-	ofBezier(start.x,start.y,startControl.x,startControl.y,endControl.x,endControl.y,end.x,end.y);	
+	ofDrawBezier(start.x,start.y,startControl.x,startControl.y,endControl.x,endControl.y,end.x,end.y);
 }
