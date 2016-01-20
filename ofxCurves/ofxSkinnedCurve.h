@@ -20,8 +20,13 @@ public:
 	ofImage * skin;
 	ofImage * shaft;
 
+    //
+    // this class was originally developed for a neural network simulator, and thus,
+    // these variables are named based on neuroanatomy. While cool, this should
+    // be more general. Marked in issue #3. https://github.com/camb416/gallery-tools/issues/3
+    //
 	ofImage axonImg;
-
+    
 	ofImage synapseImg;
 
 	ofImage hillockImg1;
