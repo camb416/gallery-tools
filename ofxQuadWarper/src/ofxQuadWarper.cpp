@@ -84,11 +84,7 @@ void ofxQuadWarper::setup(string file_in, int w_in,int h_in, bool snap_in, bool 
 }
 
 bool ofxQuadWarper::isSetup(){
-	if(w != NULL){
-		return true;
-	} else {
-		return false;
-	}
+    return setupFlag;
 }
 
 void ofxQuadWarper::update(int x_in,int y_in){
@@ -98,7 +94,9 @@ void ofxQuadWarper::update(int x_in,int y_in){
 	int ey = y_in - y;
 
 	if(isActive){
-		if(ex>-7 && ex < w+7 && ey > -7 && ey<h+7 && limit || ex>pts[0].loc.x-7 && ex < pts[1].loc.x+7 && ey > pts[0].loc.y-7 && ey<pts[2].loc.y+7){
+		if( (ex>-7 && ex < w+7 && ey > -7 && ey<h+7 && limit) ||
+           (ex>pts[0].loc.x-7 && ex < pts[1].loc.x+7 && ey > pts[0].loc.y-7 && ey<pts[2].loc.y+7)) {
+               
 			c = 0xFFFFFF;
 			// find nearest point
 			float nearDist = 10;
