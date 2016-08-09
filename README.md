@@ -7,6 +7,8 @@ multi-project tools for openframeworks development
 An openframeworks addon that makes it easier to interactively load save and edit arbitrary quads for the purpose of warping 2D camera images.
 
 ## ofxCurve
+
+![curve screenshot](ofxCurves/screenshot.jpg)
 Class that wraps openFrameworks bezier curve functionality. Handy for storing data about bezier curves for animation.
 
 ## ofxSkinnedCurve
