@@ -12,13 +12,13 @@
 // constructor
 ofxCurve::ofxCurve(){
 	isAnimated = true;
-	tweenVal = 16 ;
+	tweenVal = 4 ;
 	setOrig = true;
 }
 
 ofxCurve::ofxCurve(float x1,float y1,float x2,float y2,float x3,float y3, float x4, float y4){
     isAnimated = true;
-    tweenVal = 16 ;
+    tweenVal = 4 ;
     setOrig = true;
     set(x1,y1,x2,y2,x3,y3,x4,y4);
 }
@@ -45,6 +45,51 @@ ofPoint ofxCurve::plot(float pct_in){
 	returnVal.y = aY*pct*pct*pct + bY*pct*pct + cY*pct + start.y;
 	return returnVal;
 }
+
+float ofxCurve::getSlope(float pct_in){
+    ofPoint normal = getNormal(pct_in);
+    
+    float angle = atan2(normal.y,normal.x);
+    return angle;
+    
+}
+
+int ofxCurve::setCtrl(ofPoint ctrlPt_in, int whichCtrlPt){
+    if(whichCtrlPt ==0){
+        startControlDest = ctrlPt_in;
+    } else if(whichCtrlPt==1){
+        endControlDest = ctrlPt_in;
+    } else {
+        // error
+        return 1;
+    }
+    return 0;
+}
+
+ofPoint ofxCurve::getNormal(float pct_in){
+    float t = MAX(0.0f,MIN(pct_in,1.0f)); // from plot
+    
+    // getting the slope of a cubic bezier at a given point
+    // http://stackoverflow.com/questions/15397596/find-all-the-points-of-a-cubic-bezier-curve-in-javascript
+    // http://stackoverflow.com/questions/4089443/find-the-tangent-of-a-point-on-a-cubic-bezier-curve-on-an-iphone/4091430#4091430
+    float B0_dt = -3 * (1-t) * (1-t);
+    float B1_dt = 3*(1-t) * (1-t) -6 * t * (1-t);
+    float B2_dt = - 3 * t * t + 6 * t * (1-t);
+    float B3_dt = 3 * t * t;
+    
+    // rate of change (derivative)
+    float px_dt = (B0_dt * start.x) + (B1_dt * startControl.x) + (B2_dt * endControl.x) + (B3_dt * end.x);
+    float py_dt = (B0_dt * start.y) + (B1_dt * startControl.y) + (B2_dt * endControl.y) + (B3_dt * end.y);
+    
+    ofPoint normal;
+    normal.set(px_dt,py_dt);
+    return normal;
+    
+}
+
+
+
+
 
 // animate the curve
 void ofxCurve::update(){

@@ -38,6 +38,12 @@ public:
 	bool setOrig;
 	
 	ofPoint plot(float pct_in);
+    
+    
+    ofPoint getNormal(float pct_in);
+    float getSlope(float pct_in);
+    
+    int setCtrl(ofPoint ctrlPt_in, int whichCtrlPt);
 	
 	void update();
 	void set(ofPoint start_in, ofPoint startControl_in, ofPoint endControl_in,ofPoint end_in);
