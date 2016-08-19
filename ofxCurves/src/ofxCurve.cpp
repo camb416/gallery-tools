@@ -112,18 +112,13 @@ ofPoint ofxCurve::getNormal(float pct_in){
     // rate of change (derivative)
     float px_dt = (B0_dt * start.x) + (B1_dt * startControl.x) + (B2_dt * endControl.x) + (B3_dt * end.x);
     float py_dt = (B0_dt * start.y) + (B1_dt * startControl.y) + (B2_dt * endControl.y) + (B3_dt * end.y);
+    float pz_dt = (B0_dt * start.z) + (B1_dt * startControl.z) + (B2_dt * endControl.z) + (B3_dt * end.z);
     
     ofPoint normal;
-    normal.set(px_dt,py_dt);
+    normal.set(px_dt,py_dt, pz_dt);
     return normal;
     
 }
-
-
-
-
-
-
 
 // animate the curve
 void ofxCurve::update(){
