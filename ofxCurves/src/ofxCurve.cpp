@@ -23,6 +23,17 @@ ofxCurve::ofxCurve(float x1,float y1,float x2,float y2,float x3,float y3, float 
     set(x1,y1,x2,y2,x3,y3,x4,y4);
 }
 
+ofxCurve::ofxCurve(ofVec3f a,
+                   ofVec3f b,
+                   ofVec3f c,
+                   ofVec3f d){
+    isAnimated = true;
+    tweenVal = 4;
+    setOrig = true;
+    set(a,b,c,d);
+    
+}
+
 
 
 
@@ -45,6 +56,27 @@ ofPoint ofxCurve::plot(float pct_in){
 	returnVal.y = aY*pct*pct*pct + bY*pct*pct + cY*pct + start.y;
 	return returnVal;
 }
+
+ofPoint ofxCurve::plot3d(float pct_in){
+    float pct = MAX(0.0f,MIN(pct_in,1.0f));
+    float cX = 3*(startControl.x-start.x);
+    float bX = 3*(endControl.x-startControl.x)-cX;
+    float aX = end.x-start.x-cX-bX;
+    float cY = 3*(startControl.y-start.y);
+    float bY = 3*(endControl.y-startControl.y)-cY;
+    float aY = end.y-start.y-cY-bY; //  +ofRandom(-10,10);
+    
+    float cZ = 3*(startControl.z-start.z);
+    float bZ = 3*(endControl.z-startControl.z)-cZ;
+    float aZ = end.z-start.z-cZ-bZ;
+    
+    ofPoint returnVal;
+    returnVal.x = aX*pct*pct*pct + bX*pct*pct + cX*pct + start.x; //+ofRandom(-5,5);
+    returnVal.y = aY*pct*pct*pct + bY*pct*pct + cY*pct + start.y;
+    returnVal.z = aZ*pct*pct*pct + bZ*pct*pct + cZ*pct + start.z;
+    return returnVal;
+}
+
 
 float ofxCurve::getSlope(float pct_in){
     ofPoint normal = getNormal(pct_in);
@@ -86,6 +118,8 @@ ofPoint ofxCurve::getNormal(float pct_in){
     return normal;
     
 }
+
+
 
 
 
@@ -157,5 +191,5 @@ void ofxCurve::setEnd(ofPoint end_in){
 
 // draw (no style info)
 void ofxCurve::draw(){
-	ofDrawBezier(start.x,start.y,startControl.x,startControl.y,endControl.x,endControl.y,end.x,end.y);
+	ofDrawBezier(start.x,start.y, start.z,startControl.x,startControl.y, startControl.z,endControl.x,endControl.y,endControl.z,end.x,end.y,end.z);
 }

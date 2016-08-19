@@ -16,6 +16,12 @@ class ofxCurve{
 public:
 	ofxCurve();
     ofxCurve(float x1,float y1,float x2,float y2,float x3,float y3, float x4, float y4);
+    
+    ofxCurve(ofVec3f a,
+             ofVec3f b,
+             ofVec3f c,
+             ofVec3f d);
+    
 	~ofxCurve();
 	
 	ofPoint start;
@@ -38,6 +44,7 @@ public:
 	bool setOrig;
 	
 	ofPoint plot(float pct_in);
+    ofPoint plot3d(float pct_in);
     
     
     ofPoint getNormal(float pct_in);
