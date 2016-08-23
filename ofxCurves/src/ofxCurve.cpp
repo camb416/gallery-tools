@@ -116,6 +116,7 @@ ofPoint ofxCurve::getNormal(float pct_in){
     
     ofPoint normal;
     normal.set(px_dt,py_dt, pz_dt);
+    normal.normalize();
     return normal;
     
 }
