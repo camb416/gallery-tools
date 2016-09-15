@@ -47,7 +47,7 @@ public:
     ofPoint plot3d(float pct_in);
     
     
-    ofPoint getNormal(float pct_in);
+    ofPoint getDirection(float pct_in);
     float getSlope(float pct_in);
     
     int setCtrl(ofPoint ctrlPt_in, int whichCtrlPt);

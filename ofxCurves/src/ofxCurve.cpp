@@ -79,7 +79,7 @@ ofPoint ofxCurve::plot3d(float pct_in){
 
 
 float ofxCurve::getSlope(float pct_in){
-    ofPoint normal = getNormal(pct_in);
+    ofPoint normal = getDirection(pct_in);
     
     float angle = atan2(normal.y,normal.x);
     return angle;
@@ -98,7 +98,7 @@ int ofxCurve::setCtrl(ofPoint ctrlPt_in, int whichCtrlPt){
     return 0;
 }
 
-ofPoint ofxCurve::getNormal(float pct_in){
+ofPoint ofxCurve::getDirection(float pct_in){
     float t = MAX(0.0f,MIN(pct_in,1.0f)); // from plot
     
     // getting the slope of a cubic bezier at a given point
@@ -114,10 +114,10 @@ ofPoint ofxCurve::getNormal(float pct_in){
     float py_dt = (B0_dt * start.y) + (B1_dt * startControl.y) + (B2_dt * endControl.y) + (B3_dt * end.y);
     float pz_dt = (B0_dt * start.z) + (B1_dt * startControl.z) + (B2_dt * endControl.z) + (B3_dt * end.z);
     
-    ofPoint normal;
-    normal.set(px_dt,py_dt, pz_dt);
-    normal.normalize();
-    return normal;
+    ofPoint dir;
+    dir.set(px_dt,py_dt, pz_dt);
+    dir.normalize();
+    return dir;
     
 }
 
