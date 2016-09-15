@@ -50,6 +50,8 @@ public:
     ofPoint getDirection(float pct_in);
     float getSlope(float pct_in);
     
+    ofPoint getNormal(float pct_in){ ofLog(OF_LOG_WARNING) << "getNormal is Deprecated. Use GetDirection"; return getDirection(pct_in); };
+    
     int setCtrl(ofPoint ctrlPt_in, int whichCtrlPt);
 	
 	void update();
