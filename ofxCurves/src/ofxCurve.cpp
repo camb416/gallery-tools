@@ -186,6 +186,12 @@ void ofxCurve::setEnd(ofPoint end_in){
 }
 
 // draw (no style info)
-void ofxCurve::draw(){
+void ofxCurve::draw(bool bDrawControlPoints){
+    if(bDrawControlPoints){
+        ofDrawLine(start,startControl);
+        ofDrawLine(end,endControl);
+        ofDrawEllipse(startControl,5,5);
+        ofDrawEllipse(endControl,5,5);
+    }
 	ofDrawBezier(start.x,start.y, start.z,startControl.x,startControl.y, startControl.z,endControl.x,endControl.y,endControl.z,end.x,end.y,end.z);
 }

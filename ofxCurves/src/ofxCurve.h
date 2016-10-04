@@ -58,7 +58,7 @@ public:
 	void set(ofPoint start_in, ofPoint startControl_in, ofPoint endControl_in,ofPoint end_in);
 	void set(float x1,float y1,float x2,float y2,float x3,float y3, float x4, float y4);
 	void setEnd(ofPoint end_in);
-	void draw();
+	void draw(bool bDrawControlPoints = false);
 };
 
 #endif
